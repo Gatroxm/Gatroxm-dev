@@ -59,7 +59,17 @@ import { TagListComponent } from '../../../shared/components/tag-list/tag-list.c
       .article header { margin-bottom: 1rem; }
       .article h1 { margin-bottom: .35rem; }
       .meta { margin: 0 0 .5rem; }
-      .cover { width:100%; max-height: 420px; object-fit: cover; border-radius: .8rem; border:1px solid var(--color-border); margin: .5rem 0 1rem; }
+      .cover {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: none;
+        object-fit: contain;
+        border-radius: .8rem;
+        border: 1px solid var(--color-border);
+        margin: .5rem auto 1rem;
+        background: var(--color-slate-dark);
+      }
       .content p { margin: 0 0 1rem; white-space: pre-wrap; }
     `,
   ],
