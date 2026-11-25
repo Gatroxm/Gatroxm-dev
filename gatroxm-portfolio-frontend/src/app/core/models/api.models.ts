@@ -93,6 +93,16 @@ export interface ContactMessage {
   updatedAt: string;
 }
 
+export type BlogReactionType = 'like' | 'love' | 'haha' | 'wow' | 'sad' | 'angry';
+
+export type BlogReactionCounts = Record<BlogReactionType, number>;
+
+export interface BlogReactionSummary {
+  counts: BlogReactionCounts;
+  total: number;
+  viewerReaction: BlogReactionType | null;
+}
+
 export interface BlogPost {
   id: string;
   slug: string;
@@ -104,6 +114,7 @@ export interface BlogPost {
   status: 'draft' | 'published';
   publishedAt: string | null;
   author: string;
+  reactions?: { counts: BlogReactionCounts; total: number };
   createdAt?: string;
   updatedAt?: string;
 }

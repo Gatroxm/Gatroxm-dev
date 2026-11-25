@@ -5,10 +5,11 @@ import { ApiService } from '../../../core/services/api.service';
 import { BlogPost } from '../../../core/models/api.models';
 import { SkeletonComponent } from '../../../shared/components/skeleton/skeleton.component';
 import { TagListComponent } from '../../../shared/components/tag-list/tag-list.component';
+import { ReactionBarComponent } from '../../../shared/components/reaction-bar/reaction-bar.component';
 
 @Component({
   selector: 'app-blog-detail',
-  imports: [DatePipe, RouterLink, SkeletonComponent, TagListComponent],
+  imports: [DatePipe, RouterLink, SkeletonComponent, TagListComponent, ReactionBarComponent],
   template: `
     <section class="page">
       <div class="container article-wrap">
@@ -40,6 +41,8 @@ import { TagListComponent } from '../../../shared/components/tag-list/tag-list.c
                 <p>{{ para }}</p>
               }
             </div>
+
+            <app-reaction-bar [slug]="p.slug" />
           </article>
         } @else {
           <div class="card">

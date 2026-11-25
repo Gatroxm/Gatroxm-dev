@@ -5,6 +5,8 @@ import { environment } from '../../../environments/environment';
 import {
   AuthUser,
   BlogPost,
+  BlogReactionSummary,
+  BlogReactionType,
   ChatMessage,
   ChatResponse,
   ContactMessage,
@@ -84,6 +86,22 @@ export class ApiService {
 
   getBlogPost(slug: string): Observable<BlogPost> {
     return this.http.get<BlogPost>(`${this.base}/blog/${slug}`);
+  }
+
+  getBlogReactions(slug: string, visitorId?: string): Observable<BlogReactionSummary> {
+    const query = visitorId ? `?visitorId=${encodeURIComponent(visitorId)}` : '';
+    return this.http.get<BlogReactionSummary>(`${this.base}/blog/${slug}/reactions${query}`);
+  }
+
+  reactToBlogPost(
+    slug: string,
+    visitorId: string,
+    type: BlogReactionType,
+  ): Observable<BlogReactionSummary> {
+    return this.http.post<BlogReactionSummary>(`${this.base}/blog/${slug}/reactions`, {
+      visitorId,
+      type,
+    });
   }
 
   adminGetBlogPosts(): Observable<BlogPost[]> {

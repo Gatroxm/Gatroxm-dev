@@ -46,7 +46,7 @@ function emptyDraft(): Draft {
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>Título</th><th>Slug</th><th>Estado</th><th>Actualizado</th><th>Acciones</th></tr>
+              <tr><th>Título</th><th>Slug</th><th>Estado</th><th>Reacciones</th><th>Actualizado</th><th>Acciones</th></tr>
             </thead>
             <tbody>
               @for (p of posts(); track p.id) {
@@ -54,6 +54,7 @@ function emptyDraft(): Draft {
                   <td>{{ p.title }}</td>
                   <td><code>{{ p.slug }}</code></td>
                   <td><span class="status" [attr.data-status]="p.status">{{ p.status === 'published' ? 'Publicado' : 'Borrador' }}</span></td>
+                  <td>{{ p.reactions?.total || 0 }}</td>
                   <td>{{ (p.updatedAt || p.createdAt) | date: 'yyyy-MM-dd HH:mm' }}</td>
                   <td class="row-actions">
                     <button type="button" class="link-btn" (click)="edit(p)">Editar</button>
